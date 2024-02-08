@@ -1,0 +1,9 @@
+---
+
+- name: Configure Settings
+  ansible.controller.settings:
+    controller_host: "{{ aap_controller_host }}"
+    controller_username: "{{ aap_controller_username }}"
+    controller_password: "{{ aap_controller_password }}"
+    settings: "{{ aap_controller_settings }}"
+  no_log: "{{ no_logging | default ('true') }}"

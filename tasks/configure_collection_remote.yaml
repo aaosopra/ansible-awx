@@ -1,0 +1,16 @@
+---
+
+- name: Add Collection Remotes
+  infra.ah_configuration.collection_remote:
+    ah_host: "{{ aap_ah_host }}"
+    ah_username: "{{ aap_ah_username }}"
+    ah_password: "{{ aap_ah_password }}"
+    name: "{{ item.name }}"
+    state: "{{ item.state | default('present') }}"
+    token: "{{ item.token | default(omit) }}"
+    url: "{{ item.url }}"
+    auth_url: "{{ item.auth_url | default(omit) }}"
+    proxy_url: "{{ item.proxy_url | default(omit) }}"
+    requirements: "{{ item.requirements | default(omit) }}"
+  no_log: "{{ no_logging | default ('true') }}"
+  loop: "{{ ah_collection_remotes }}"

@@ -1,0 +1,15 @@
+---
+
+- name: Add Execution Environments
+  ansible.controller.execution_environment:
+    controller_host: "{{ aap_controller_host }}"
+    controller_username: "{{ aap_controller_username }}"
+    controller_password: "{{ aap_controller_password }}"
+    name: "{{ item.name }}"
+    description: "{{ item.description | default(omit) }} (Created by Ansible)"
+    image: "{{ item.image }}"
+    state: "{{ item.state | default('present') }}"
+  no_log: "{{ no_logging | default ('true') }}"
+  loop: "{{ aap_execution_environments }}"
+
+...

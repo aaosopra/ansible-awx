@@ -1,0 +1,16 @@
+---
+
+- name: Add Schedules
+  ansible.controller.schedule:
+    controller_host: "{{ aap_controller_host }}"
+    controller_username: "{{ aap_controller_username }}"
+    controller_password: "{{ aap_controller_password }}"
+    name: "{{ item.name }}"
+    description: "{{ item.description | default(omit) }} (Created by Ansible)"
+    organization: "{{ item.organization | default('Default') }}"
+    state: "{{ item.state | default('present') }}"
+    unified_job_template: "{{ item.unified_job_template }}"
+    enabled: "{{ item.enabled | default('true') }}"
+    rrule: "DTSTART:{{ lookup('ansible.builtin.pipe', 'date +%Y%m%dT') }}{{ item.start_hour }}{{ item.start_minute }}00Z RRULE:{{ item.rrule }}"
+  no_log: "{{ no_logging | default ('true') }}"
+  loop: "{{ aap_schedules }}"

@@ -1,0 +1,32 @@
+---
+
+- name: Add Collection Repositories
+  infra.ah_configuration.collection_repository:
+    ah_host: "{{ aap_ah_host }}"
+    ah_username: "{{ aap_ah_username }}"
+    ah_password: "{{ aap_ah_password }}"
+    name: "{{ item.name }}"
+    state: "{{ item.state | default('present') }}"
+    description: "{{ item.description | default(omit) }} (Created by Ansible)"
+    distribution: "{{ item.distribution | default(omit) }}"
+    remote: "{{ item.remote }}"
+  no_log: "{{ no_logging | default ('true') }}"
+  loop: "{{ ah_collection_repositories }}"
+
+# - name: Sync rh-certified repo without waiting
+#   infra.ah_configuration.collection_repository_sync:
+#     ah_host: "{{ aap_ah_host }}"
+#     ah_username: "{{ aap_ah_username }}"
+#     ah_password: "{{ aap_ah_password }}"
+#     name: rh-certified
+#     wait: false
+
+
+- name: Sync Collection Repositories
+  infra.ah_configuration.collection_repository_sync:
+    ah_host: "{{ aap_ah_host }}"
+    ah_username: "{{ aap_ah_username }}"
+    ah_password: "{{ aap_ah_password }}"
+    name: "{{ item.name }}"
+    wait: false
+  loop: "{{ ah_collection_repositories }}"

@@ -1,0 +1,25 @@
+---
+
+- name: Add Execution Environment Registries
+  infra.ah_configuration.ah_ee_registry:
+    ah_host: "{{ aap_ah_host }}"
+    ah_username: "{{ aap_ah_username }}"
+    ah_password: "{{ aap_ah_password }}"
+    name: "{{ item.name }}"
+    state: "{{ item.state | default('present') }}"
+    url: "{{ item.url }}"
+    proxy_url: "{{ item.proxy_url | default(omit) }}"
+    username: "{{ item.username | default(omit) }}"
+    password: "{{ item.password | default(omit) }}"
+  no_log: "{{ no_logging | default ('true') }}"
+  loop: "{{ ah_ee_registries }}"
+
+- name: Sync Execution Environment Registries
+  infra.ah_configuration.ah_ee_registry_sync:
+    ah_host: "{{ aap_ah_host }}"
+    ah_username: "{{ aap_ah_username }}"
+    ah_password: "{{ aap_ah_password }}"
+    name: "{{ item.name }}"
+    wait: false
+  no_log: "{{ no_logging | default ('true') }}"
+  loop: "{{ ah_ee_registries }}"

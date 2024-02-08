@@ -1,0 +1,15 @@
+---
+
+- name: Add Notification Templates
+  ansible.controller.notification_template:
+    controller_host: "{{ aap_controller_host }}"
+    controller_username: "{{ aap_controller_username }}"
+    controller_password: "{{ aap_controller_password }}"
+    organization: "{{ item.organization | default('Default') }}"
+    name: "{{ item.name }}"
+    description: "{{ item.description | default(omit) }} (Created by Ansible)"
+    state: "{{ item.state | default('present') }}"
+    notification_type: "{{ item.notification_type  }}"
+    notification_configuration: "{{ item.notification_configuration }}"
+  no_log: "{{ no_logging | default ('true') }}"
+  loop: "{{ aap_notification_templates }}"

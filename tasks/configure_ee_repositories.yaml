@@ -1,0 +1,14 @@
+---
+
+
+- name: Add Execution Environment repository
+  infra.ah_configuration.ah_ee_repository:
+    ah_host: "{{ aap_ah_host }}"
+    ah_username: "{{ aap_ah_username }}"
+    ah_password: "{{ aap_ah_password }}"
+    name: "{{ item.name }}"
+    upstream_name: "{{ item.upstream_name }}"
+    registry: "{{ item.registry }}"
+    include_tags: "{{ item.include_tags | default(omit) }}"
+    state: "{{ item.state | default('present') }}"
+  loop: "{{ ah_ee_repositories }}"

@@ -1,0 +1,13 @@
+---
+
+- name: Add Organizations
+  ansible.controller.organization:
+    controller_host: "{{ aap_controller_host }}"
+    controller_username: "{{ aap_controller_username }}"
+    controller_password: "{{ aap_controller_password }}"
+    name: "{{ item.name }}"
+    description: "{{ item.description | default(omit) }} (Created by Ansible)"
+    state: "{{ item.state | default('present') }}"
+    galaxy_credentials: "{{ item.galaxy_credentials | default(omit) }}"
+  no_log: "{{ no_logging | default ('true') }}"
+  loop: "{{ aap_organizations }}"
