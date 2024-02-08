@@ -1,3 +1,7 @@
 ---
 
-aap_organizations:
+awx_organizations:
+
+    - name: awx-lab
+      description: AWX lab
+

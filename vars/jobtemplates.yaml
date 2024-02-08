@@ -1,4 +1,11 @@
 ---
 
-aap_jobtemplates:
+awx_jobtemplates:
+
+  - name: Update projects
+    organization: awx-lab
+    description: Update projects for this AWX instance
+    inventory: Localhost
+    project: Awx config
+    playbook: playbooks/configure_awx.yaml
 

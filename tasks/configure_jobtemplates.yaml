@@ -1,10 +1,10 @@
 ---
 
 - name: Add Job Templates
-  ansible.controller.job_template:
-    controller_host: "{{ aap_controller_host }}"
-    controller_username: "{{ aap_controller_username }}"
-    controller_password: "{{ aap_controller_password }}"
+  awx.awx.job_template:
+    controller_host: "{{ awx_host }}"
+    controller_username: "{{ awx_username }}"
+    controller_password: "{{ awx_password }}"
     name: "{{ item.name }}"
     description: "{{ item.description | default(omit) }} (Created by Ansible)"
     organization: "{{ item.organization | default('Default') }}"
@@ -29,5 +29,6 @@
     execution_environment: "{{ item.execution_environment | default(omit) }}"
     survey_enabled: "{{ item.survey_enabled | default(omit) }}"
     survey_spec: "{{ item.survey_spec | default(omit) }}" #https://docs.ansible.com/ansible-tower/latest/html/towerapi/api_ref.html#/Job_Templates/Job_Templates_job_templates_survey_spec_create
+    validate_certs: false
   no_log: "{{ no_logging | default ('true') }}"
-  loop: "{{ aap_jobtemplates }}"
+  loop: "{{ awx_jobtemplates }}"

@@ -1,10 +1,10 @@
 ---
 
 - name: Add Projects
-  ansible.controller.project:
-    controller_host: "{{ aap_controller_host }}"
-    controller_username: "{{ aap_controller_username }}"
-    controller_password: "{{ aap_controller_password }}"
+  awx.awx.project:
+    controller_host: "{{ awx_host }}"
+    controller_username: "{{ awx_username }}"
+    controller_password: "{{ awx_password }}"
     name: "{{ item.name }}"
     description: "{{ item.description | default(omit) }} (Created by Ansible)"
     organization: "{{ item.organization | default('Default') }}"
@@ -15,5 +15,6 @@
     scm_branch: "{{ item.scm_branch | default('master') }}"
     scm_url: "{{ item.scm_url | default(omit) }}"
     credential: "{{ item.credential | default(omit) }}"
+    validate_certs: false
   no_log: "{{ no_logging | default ('true') }}"
-  loop: "{{ aap_projects }}"
+  loop: "{{ awx_projects }}"
