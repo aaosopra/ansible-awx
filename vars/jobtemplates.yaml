@@ -6,6 +6,11 @@ awx_jobtemplates:
     organization: awx-lab
     description: Update projects for this AWX instance
     inventory: Localhost
+    job_type: run
+    job_tags: awx_projects
     project: Awx config
     playbook: playbooks/configure_awx.yaml
+    credentials:
+      - Azure credential
+      - AWX vault
 
