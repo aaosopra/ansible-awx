@@ -37,12 +37,12 @@ jobs:
     if: ${{ needs.changes.outputs.jobtemplates == 'true' }}
     runs-on: self-hosted
     steps:
-    - run: curl -k -X POST -u ${{ secrets.AWX_USER }}:${{ secrets.AWX_PASSWORD }} https://awx.baluba.net/api/v2/workflow_job_templates/11/launch/
+    - run: curl -k -X POST -u ${{ secrets.AWX_USER }}:${{ secrets.AWX_PASSWORD }} https://awx.baluba.net/api/v2/workflow_job_templates/16/launch/
 
   launch_inventories_workflow:
     needs: changes
     if: ${{ needs.changes.outputs.inventories == 'true' }}
     runs-on: self-hosted
     steps:
-    - run: curl -k -X POST -u ${{ secrets.AWX_USER }}:${{ secrets.AWX_PASSWORD }} https://awx.baluba.net/api/v2/workflow_job_templates/11/launch/
+    - run: curl -k -X POST -u ${{ secrets.AWX_USER }}:${{ secrets.AWX_PASSWORD }} https://awx.baluba.net/api/v2/workflow_job_templates/17/launch/
 
