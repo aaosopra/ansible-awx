@@ -24,5 +24,11 @@ jobs:
     if: ${{ needs.changes.outputs.vars == 'true' }}
     runs-on: self-hosted
     steps:
-    - uses: actions/checkout@v3
-    - run: echo "projects was changed"
+    - name: Deploy update project template
+      uses: fjogeleit/http-request-action@v1
+      with:
+        url: 'https://awx.baluba.net/api/v2/job_templates/9/launch/'
+        method: 'POST'
+        username: ${{ secrets.AWX_USER }}
+        password: ${{ secrets.AWX_PASSWORD }}
+        customHeaders: '{"Content-Type": "application/json"}'
