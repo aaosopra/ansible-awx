@@ -5,7 +5,7 @@ on:
     branches:
     - main
 
-kobs:
+jobs:
   changes:
     runs-on: self-hosted
     outputs:
