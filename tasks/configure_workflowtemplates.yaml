@@ -1,0 +1,16 @@
+---
+
+- name: Add Workflow Templates
+  awx.awx.workflow_job_template:
+    controller_host: "{{ awx_host }}"
+    controller_username: "{{ awx_username }}"
+    controller_password: "{{ awx_password }}"
+    name: "{{ item.name }}"
+    description: "{{ item.description | default(omit) }} (Created by Ansible)"
+    inventory: "{{ item.inventory | default(omit) }}"
+    organization: "{{ item.organization | default('Default') }}"
+    state: "{{ item.state | default('present') }}"
+    workflow_nodes: "{{ item.workflow_nodes }}"
+    validate_certs: false
+  no_log: "{{ no_logging | default ('true') }}"
+  loop: "{{ awx_workflow_templates }}"

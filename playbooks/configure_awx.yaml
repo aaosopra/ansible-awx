@@ -8,6 +8,7 @@
     - ../vars/inventories.yaml
     - ../vars/jobtemplates.yaml
     - ../vars/organizations.yaml
+    - ../vars/workflow_templates.yaml
   tasks:
     - name: No tags warn
       pause:
@@ -30,5 +31,8 @@
 
     - import_tasks: ../tasks/configure_jobtemplates.yaml
       tags: [awx_jobtemplates]
+
+    - import_tasks: ../tasks/configure_workflowtemplates.yaml
+      tags: [awx_workflow_templates]
 
 

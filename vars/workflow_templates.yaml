@@ -1,0 +1,24 @@
+
+
+awx_workflow_templates:
+  - name: Update projects workflow
+    description: Sync project and run update projects job
+    inventory: Localhost
+    organization: awx-lab
+    workflow_nodes:
+      - identifier: node101
+        unified_job_template:
+          organization: 
+            name: awx-lab
+          name: Awx config
+          type: project
+        related:
+          success_nodes:
+            - identifier: node201
+      - identifier: node201
+        unified_job_template:
+          organization:
+            name: awx-lab
+          name: Update projects
+          type: job_template
+     

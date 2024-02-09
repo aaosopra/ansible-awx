@@ -24,4 +24,4 @@ jobs:
     if: ${{ needs.changes.outputs.vars == 'true' }}
     runs-on: self-hosted
     steps:
-    - run: curl -k -X POST -u ${{ secrets.AWX_USER }}:${{ secrets.AWX_PASSWORD }} https://awx.baluba.net/api/v2/job_templates/9/launch/
+    - run: curl -k -X POST -u ${{ secrets.AWX_USER }}:${{ secrets.AWX_PASSWORD }} https://awx.baluba.net/api/v2/workflow_job_templates/11/launch/
