@@ -10,6 +10,7 @@ awx_jobtemplates:
     job_tags: awx_projects
     project: Awx config
     playbook: playbooks/configure_awx.yaml
+    become_enabled: false
     credentials:
       - Azure credential
       - AWX vault
