@@ -9,8 +9,7 @@ jobs:
   changes:
     runs-on: self-hosted
     outputs:
-      src: ${{ steps.changes.outputs.src }}
-      infra: ${{ steps.changes.outputs.infra }}
+      vars: ${{ steps.changes.outputs.vars }}
     steps:
     - uses: actions/checkout@v4
     - uses: dorny/paths-filter@v2
