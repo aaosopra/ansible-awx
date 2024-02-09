@@ -5,6 +5,10 @@ awx_inventories:
   - name: Azure inventory
     description: "Inventory for azure VMs"
     organization: awx-lab
+  
+  - name: Lab inventory
+    description: "Inventory for awx lab"
+    organization: awx-lab
 
 
 ...
