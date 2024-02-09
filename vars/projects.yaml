@@ -8,9 +8,19 @@ awx_projects:
       scm_branch: main
       scm_type: git
       credential: Github PAT
+
     - name: Example project
       description: Added to show github runner
       organization: awx-lab
       scm_url: https://github.com/ironpinguin/tower-awx-example-project.git
       scm_branch: master
       scm_type: git
+
+    - name: Azure Deployment
+      description: Project for deploying azure VM
+      organization: awx-lab
+      scm_url: https://github.com/aaosopra/ansible_lab.git
+      scm_branch: main
+      scm_type: git
+      credential: Github PAT
+
