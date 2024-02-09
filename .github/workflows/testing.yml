@@ -1,10 +1,29 @@
-name: learn-github-actions
-run-name: ${{ github.actor }} is learning GitHub Actions
-on: [push]
-jobs:
-  check-bats-version:
+name: Deploy projects
+run-name: Deploy projects on AWX
+on:
+  push:
+    branches:
+    - main
+
+kobs:
+  changes:
+    runs-on: self-hosted
+    outputs:
+      src: ${{ steps.changes.outputs.src }}
+      infra: ${{ steps.changes.outputs.infra }}
+    steps:
+    - uses: actions/checkout@v4
+    - uses: dorny/paths-filter@v2
+      id: changes
+      with:
+        filters: |
+          vars:
+            - 'vars/projects.yaml'
+
+  vars:
+    needs: changes
+    if: ${{ needs.changes.outputs.vars == 'true' }}
     runs-on: self-hosted
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v3
-      - run: echo "This is a workflow"
+    - uses: actions/checkout@v3
+    - run: echo "projects was changed"
