@@ -19,7 +19,7 @@ jobs:
           vars:
             - 'vars/projects.yaml'
 
-  vars:
+  launch_projects_workflow:
     needs: changes
     if: ${{ needs.changes.outputs.vars == 'true' }}
     runs-on: self-hosted
