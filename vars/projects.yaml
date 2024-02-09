@@ -8,4 +8,9 @@ awx_projects:
       scm_branch: main
       scm_type: git
       credential: Github PAT
-# testing2
+    - name: Example project
+      description: Added to show github runner
+      organization: awx-lab
+      scm_url: https://github.com/ironpinguin/tower-awx-example-project.git
+      scm_branch: master
+      scm_type: git
