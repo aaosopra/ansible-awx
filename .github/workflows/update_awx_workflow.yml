@@ -12,7 +12,7 @@ jobs:
       vars: ${{ steps.changes.outputs.vars }}
     steps:
     - uses: actions/checkout@v4
-    - uses: dorny/paths-filter@v2
+    - uses: dorny/paths-filter@v3.0.0
       id: changes
       with:
         filters: |
