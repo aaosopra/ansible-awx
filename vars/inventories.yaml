@@ -2,5 +2,9 @@
 
 awx_inventories:
 
+  - name: Azure inventory
+    description: "Inventory for azure VMs"
+    organization: awx-lab
+
 
 ...

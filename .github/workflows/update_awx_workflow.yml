@@ -9,19 +9,40 @@ jobs:
   changes:
     runs-on: self-hosted
     outputs:
-      vars: ${{ steps.changes.outputs.vars }}
+      projects: ${{ steps.changes.outputs.projects }}
+      jobtemplates: ${{ steps.changes.outputs.jobtemplates }}
+      inventories: ${{ steps.changes.outputs.inventories }}
     steps:
     - uses: actions/checkout@v4
     - uses: dorny/paths-filter@v3.0.0
       id: changes
       with:
         filters: |
-          vars:
+          projects:
             - 'vars/projects.yaml'
+          jobtemplates:
+            - 'vars/jobtemplates.yaml'
+          inventories:
+            - 'vars/inventories.yaml'
 
   launch_projects_workflow:
     needs: changes
-    if: ${{ needs.changes.outputs.vars == 'true' }}
+    if: ${{ needs.changes.outputs.projects == 'true' }}
     runs-on: self-hosted
     steps:
     - run: curl -k -X POST -u ${{ secrets.AWX_USER }}:${{ secrets.AWX_PASSWORD }} https://awx.baluba.net/api/v2/workflow_job_templates/11/launch/
+
+  launch_jobtemplates_workflow:
+    needs: changes
+    if: ${{ needs.changes.outputs.jobtemplates == 'true' }}
+    runs-on: self-hosted
+    steps:
+    - run: curl -k -X POST -u ${{ secrets.AWX_USER }}:${{ secrets.AWX_PASSWORD }} https://awx.baluba.net/api/v2/workflow_job_templates/11/launch/
+
+  launch_inventories_workflow:
+    needs: changes
+    if: ${{ needs.changes.outputs.inventories == 'true' }}
+    runs-on: self-hosted
+    steps:
+    - run: curl -k -X POST -u ${{ secrets.AWX_USER }}:${{ secrets.AWX_PASSWORD }} https://awx.baluba.net/api/v2/workflow_job_templates/11/launch/
+

@@ -6,7 +6,7 @@ awx_workflow_templates:
     inventory: Localhost
     organization: awx-lab
     workflow_nodes:
-      - identifier: node101
+      - identifier: projectsync
         unified_job_template:
           organization: 
             name: awx-lab
@@ -14,11 +14,55 @@ awx_workflow_templates:
           type: project
         related:
           success_nodes:
-            - identifier: node201
-      - identifier: node201
+            - identifier: launch_project_update
+      - identifier: launch_project_update
         unified_job_template:
           organization:
             name: awx-lab
           name: Update projects
           type: job_template
+
+  - name: Update jobtemplates workflow
+    description: Sync project and run update jobtemplates job
+    inventory: Localhost
+    organization: awx-lab
+    workflow_nodes:
+      - identifier: projectsync
+        unified_job_template:
+          organization: 
+            name: awx-lab
+          name: Awx config
+          type: project
+        related:
+          success_nodes:
+            - identifier: launch_project_update
+      - identifier: launch_project_update
+        unified_job_template:
+          organization:
+            name: awx-lab
+          name: Update jobtemplates
+          type: job_template
+
+  - name: Update inventories workflow
+    description: Sync project and run update inventories job
+    inventory: Localhost
+    organization: awx-lab
+    workflow_nodes:
+      - identifier: projectsync
+        unified_job_template:
+          organization: 
+            name: awx-lab
+          name: Awx config
+          type: project
+        related:
+          success_nodes:
+            - identifier: launch_project_update
+      - identifier: launch_project_update
+        unified_job_template:
+          organization:
+            name: awx-lab
+          name: Update Inventories
+          type: job_template
+     
+     
      

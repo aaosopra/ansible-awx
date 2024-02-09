@@ -15,3 +15,28 @@ awx_jobtemplates:
       - Azure credential
       - AWX vault
 
+  - name: Update jobtemplates
+    organization: awx-lab
+    description: Update jobtemplates for this AWX instance
+    inventory: Localhost
+    job_type: run
+    job_tags: awx_jobtemplates
+    project: Awx config
+    playbook: playbooks/configure_awx.yaml
+    become_enabled: false
+    credentials:
+      - Azure credential
+      - AWX vault
+
+  - name: Update Inventories
+    organization: awx-lab
+    description: Update inventories for this AWX instance
+    inventory: Localhost
+    job_type: run
+    job_tags: awx_inventories
+    project: Awx config
+    playbook: playbooks/configure_awx.yaml
+    become_enabled: false
+    credentials:
+      - Azure credential
+      - AWX vault
