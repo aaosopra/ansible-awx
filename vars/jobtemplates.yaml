@@ -2,16 +2,16 @@
 
 awx_jobtemplates:
 
-  # - name: Lab job template
-  #   organization: awx-lab
-  #   description: Run demo job
-  #   inventory: Azure inventory
-  #   job_type: run
-  #   project: Lab demo project
-  #   playbook: debug.yaml
-  #   become_enabled: true
-  #   credentials:
-  #     - Azure credential
+  - name: Lab job template
+    organization: awx-lab
+    description: Run demo job
+    inventory: Azure inventory
+    job_type: run
+    project: Lab demo project
+    playbook: debug.yaml
+    become_enabled: true
+    credentials:
+      - Azure credential
 
   - name: Update jobtemplates
     organization: awx-lab
