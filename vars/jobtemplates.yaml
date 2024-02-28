@@ -13,17 +13,6 @@ awx_jobtemplates:
     credentials:
       - Azure credential
 
-  - name: Deploy azure VM
-    organization: awx-lab
-    description: Deploy VM on Azure
-    inventory: Azure inventory
-    job_type: run
-    project: Azure Deployment
-    playbook: deploy_azure_vm.yaml
-    become_enabled: false
-    credentials:
-      - Azure credential
-
   - name: Update jobtemplates
     organization: awx-lab
     description: Update jobtemplates for this AWX instance

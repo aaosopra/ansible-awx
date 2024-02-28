@@ -8,14 +8,6 @@ awx_projects:
       scm_branch: main
       scm_type: git
       credential: Github PAT
-   
-    - name: Azure Deployment
-      description: Project for deploying azure VM
-      organization: awx-lab
-      scm_url: https://github.com/aaosopra/ansible_lab.git
-      scm_branch: main
-      scm_type: git
-      credential: Github PAT
 
     - name: Lab demo project
       description: Project with simple playbook for demo
