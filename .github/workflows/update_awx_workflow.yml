@@ -33,8 +33,11 @@ jobs:
     - run: curl -k -X POST -u ${{ secrets.AWX_USER }}:${{ secrets.AWX_PASSWORD }} https://awx.baluba.net/api/v2/workflow_job_templates/11/launch/
 
   launch_jobtemplates_workflow:
-    needs: changes
-    if: ${{ needs.changes.outputs.jobtemplates == 'true' }}
+    needs: [changes, launch_projects_workflow]
+    if: |
+      always() && 
+      (needs.launch_projects_workflow.result == 'success' || needs.launch_projects_workflow.result == 'skipped') &&
+      needs.changes.outputs.jobtemplates == 'true'
     runs-on: self-hosted
     steps:
     - run: curl -k -X POST -u ${{ secrets.AWX_USER }}:${{ secrets.AWX_PASSWORD }} https://awx.baluba.net/api/v2/workflow_job_templates/16/launch/
