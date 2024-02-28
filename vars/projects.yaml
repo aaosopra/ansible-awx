@@ -9,12 +9,12 @@ awx_projects:
       scm_type: git
       credential: Github PAT
 
-    - name: Lab demo project
-      description: Project with simple playbook for demo
-      organization: awx-lab
-      scm_url: https://github.com/aaosopra/awx-example-project.git
-      scm_branch: main
-      scm_type: git
-      credential: Github PAT
+    # - name: Lab demo project
+    #   description: Project with simple playbook for demo
+    #   organization: awx-lab
+    #   scm_url: https://github.com/aaosopra/awx-example-project.git
+    #   scm_branch: main
+    #   scm_type: git
+    #   credential: Github PAT
 
 
